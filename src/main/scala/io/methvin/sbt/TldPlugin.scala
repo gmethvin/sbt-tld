@@ -57,7 +57,7 @@ object TldPlugin extends AutoPlugin {
       valName = tldValName.value,
       regenAfter = tldRegenAfter.value,
       sourceUrl = tldSourceUrl.value,
-      file = (sourceManaged in Compile).value / "tld" / s"${tldObjectName.value}.scala"
+      file = (sourceManaged in Compile).value / "sbt-tld" / s"tld.scala"
     ),
     sourceGenerators += tldGenerate
   )
@@ -85,14 +85,13 @@ object TldPlugin extends AutoPlugin {
            | */
            |package $packageName
            |
-           |object `$objectName` {
-           |  val `$valName`: IndexedSeq[String] = ${tldLines.mkString("IndexedSeq(\n\"", "\",\n\"", "\"\n)")}
+           |object $objectName {
+           |  val $valName: IndexedSeq[String] = ${tldLines.mkString("IndexedSeq(\n\"", "\",\n\"", "\"\n)")}
            |}
-        """.stripMargin
+           |""".stripMargin
       IO.write(file, content)
       log.info(s"Generated TLD file: $file")
     }
     Seq(file)
   }
-
 }
