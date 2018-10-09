@@ -7,7 +7,7 @@ object Main {
     val tlds = TLDs.get
     println(tlds)
     import scala.collection.Searching._
-    val tldsToTest = Seq("com", "net", "org", "play", "eu", "africa", "horse", "bar", "life", "blog")
+    val tldsToTest = Seq("com", "net", "org", "play", "eu", "africa", "horse", "bar", "life", "blog", "xn--y9a3aq")
     for (tld <- tldsToTest) {
       tlds.search(tld) match {
         case Found(index) => // do nothing

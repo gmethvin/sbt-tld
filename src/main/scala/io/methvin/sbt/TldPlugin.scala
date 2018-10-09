@@ -71,12 +71,13 @@ object TldPlugin extends AutoPlugin {
     file: File,
     log: Logger
   ): Seq[File] = {
+    val Tld = "^([A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)$".r
+
     if ((System.currentTimeMillis - file.lastModified).millis > regenAfter) {
       log.info(s"Fetching TLD list from $sourceUrl")
       val tldFileContent = Using.urlInputStream(sourceUrl)(IO.readStream(_))
-      val tldLines = tldFileContent.linesIterator
-        .map(_.toLowerCase.trim)
-        .filter(line => line.nonEmpty && line.forall(c => c.isLetterOrDigit || c == '-'))
+      val tlds = tldFileContent.linesIterator
+        .collect { case Tld(tld) => tld.toLowerCase }
         .toIndexedSeq
         .sorted
       val content =
@@ -86,7 +87,7 @@ object TldPlugin extends AutoPlugin {
            |package $packageName
            |
            |object $objectName {
-           |  val $valName: IndexedSeq[String] = ${tldLines.mkString("IndexedSeq(\n\"", "\",\n\"", "\"\n)")}
+           |  val $valName: IndexedSeq[String] = ${tlds.mkString("IndexedSeq(\n    \"", "\",\n    \"", "\"\n  )")}
            |}
            |""".stripMargin
       IO.write(file, content)

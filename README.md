@@ -34,11 +34,11 @@ tldObjectName := "TLDs"
 // name of val containing the list of TLDs
 tldValName := "get"
 
-// URL from which to get the list (one TLD per line, lines with invalid characters ignored)
+// URL from which to get the list (one TLD per line, lines with invalid TLDs ignored)
 tldSourceUrl := new URL("https://data.iana.org/TLD/tlds-alpha-by-domain.txt")
 ```
 
-Note that the package, object, and val names are simply substituted into the code unescaped, so they must be valid identifiers in each context.
+You can configure the package, object, and val names by setting the above-mentioned settings. Note that these values are substituted into the code unescaped, so they must be valid identifiers in each context.
 
 This will generate a file that looks like:
 
@@ -54,4 +54,4 @@ object TLDs {
 }
 ```
 
-In this case, to get the list of TLDs, you'd use `TLDs.get`. You can configure the package, object, and val names by setting the above-mentioned settings. For convenience, the TLDs are all lowercased and sorted.
+In this case, to get the list of TLDs, you'd use `TLDs.get`. For convenience, the TLDs are all lowercased and sorted.
