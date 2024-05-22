@@ -1,7 +1,5 @@
 # sbt-tld
 
- [![Travis CI](https://travis-ci.org/gmethvin/sbt-tld.svg?branch=master)](https://travis-ci.org/gmethvin/sbt-tld) [![Download](https://api.bintray.com/packages/gmethvin/sbt-plugins/sbt-tld/images/download.svg)](https://bintray.com/gmethvin/sbt-plugins/sbt-tld/_latestVersion) 
-
 An sbt plugin to generate a current list of top-level domains for use in Scala.
 
 ## Usage
@@ -12,7 +10,7 @@ This plugin requires sbt 1.0.0+. Reference it in your `project/plugins.sbt` like
 addSbtPlugin("io.methvin.sbt" % "sbt-tld" % version)
 ```
 
-where `version` is replaced by the latest version: [![Download](https://api.bintray.com/packages/gmethvin/sbt-plugins/sbt-tld/images/download.svg)](https://bintray.com/gmethvin/sbt-plugins/sbt-tld/_latestVersion) 
+where `version` is replaced by the [latest version](https://index.scala-lang.org/gmethvin/sbt-tld).
 
 
 Then add the `TldPlugin` to the project for which you'd like to generate the TLD list, and configure the settings to your liking:

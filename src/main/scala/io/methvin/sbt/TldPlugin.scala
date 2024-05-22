@@ -57,7 +57,7 @@ object TldPlugin extends AutoPlugin {
       valName = tldValName.value,
       regenAfter = tldRegenAfter.value,
       sourceUrl = tldSourceUrl.value,
-      file = (sourceManaged in Compile).value / "sbt-tld" / s"tld.scala"
+      file = (Compile / sourceManaged).value / "sbt-tld" / "tld.scala"
     ),
     sourceGenerators += tldGenerate
   )
